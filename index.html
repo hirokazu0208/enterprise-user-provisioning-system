@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>料金システム利用者管理</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="container mt-4">
+  <h2 class="text-info">料金システム利用者一覧</h2>
+
+  <div class="card mb-3">
+    <div class="card-header bg-info text-white">追加編集フォーム</div>
+    <div class="card-body">
+      <div class="row mb-2 gx-1">
+        <div class="col-md">
+          <label for="editAdOu">AD配置先</label>
+          <select id="editAdOu" class="form-select">
+            <option value="">----</option>
+          </select>
+        </div>
+
+        <div class="col-md">
+          <label for="editGroup">所属名称</label>
+          <select id="editGroup" class="form-select" style="width:100%;">
+            <option value="">----</option>
+          </select>
+        </div>
+
+        <div class="col-md">
+          <label for="editID">職員番号ログインID</label>
+          <input type="text" id="editID" class="form-control" style="width:100%;">
+        </div>
+
+        <div class="col-md">
+          <label for="editSei">姓</label>
+          <input type="text" id="editSei" class="form-control">
+        </div>
+
+        <div class="col-md">
+          <label for="editMei">名</label>
+          <input type="text" id="editMei" class="form-control">
+        </div>
+
+        <div class="col-md">
+          <label for="editTanto">担当名称</label>
+          <select id="editTanto" class="form-select" style="width:100%;">
+            <option value="">----</option>
+          </select>
+        </div>
+
+        <div class="col-md">
+          <label for="editYear">年度</label>
+          <select id="editYear" class="form-select" style="width:100%;"></select>
+        </div>
+
+        <div class="col-md">
+          <label for="dateStart">登録日(採用日)</label>
+          <input type="date" id="dateStart" class="form-control" style="width:100%;">
+        </div>
+      </div>
+
+      <div class="col-md">
+        <label><input type="checkbox" id="editKanri">&nbsp;拠点管理者</label>&nbsp;
+        <label><input type="checkbox" id="editSyoku">&nbsp;一般職員</label>
+      </div>
+
+      <div class="text-end mt-2">
+        <button class="btn btn-success me-2" onclick="createUser()">追加</button>
+        <button class="btn btn-primary me-2" onclick="updateUser()">更新</button>
+        <button class="btn btn-danger" onclick="deleteUser()">削除</button>
+        <button class="btn btn-secondary ms-2" onclick="clearForm()">クリア</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <span>利用者一覧</span>
+      <button type="button" id="toggleAllUsersBtn" class="btn btn-sm btn-light"
+              onclick="toggleAllUsers()">すべて展開</button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>No</th>
+            <th>年度</th>
+            <th>所属名称</th>
+            <th>職員番号ログインID</th>
+            <th>姓</th>
+            <th>名</th>
+            <th>担当名称</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody id="userTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-header">ADのみ利用者</div>
+    <div class="card-body">
+      <button class="btn btn-outline-secondary mb-2" onclick="loadAdOnlyUsers()">再読込</button>
+      <div id="adOnlyUsers"></div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
